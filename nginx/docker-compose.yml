@@ -12,6 +12,13 @@ services:
       - '80:80'
       - '81:81'
       - '443:443'
+    # environment:
+    #   DB_MYSQL_HOST: infra-mysql
+    #   DB_MYSQL_PORT: 3306
+    #   DB_MYSQL_USER: 'nginx'
+    #   DB_MYSQL_PASSWORD: ''
+    #   DB_MYSQL_PASSWORD__FILE: ''
+    #   DB_MYSQL_NAME: 'nginx'
     volumes:
       - ./data/manager:/data
       - ./data/letsencrypt:/etc/letsencrypt
@@ -23,3 +30,7 @@ services:
       - ./data/nginx/mime.types:/etc/nginx/mime.types
       - ./data/nginx/scgi_params:/etc/nginx/scgi_params
       - ./data/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+
+# secrets:
+#   nginx-db-password:
+#     file: ./nginx-db-password
