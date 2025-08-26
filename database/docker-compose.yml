@@ -9,6 +9,12 @@ services:
     networks:
       - infra
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: ./infra-mysql-password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/infra-mysql-password
+    secrets:
+      - infra-mysql-password
     volumes:
       - ./data/infra-mysql:/var/lib/mysql
+
+secrets:
+  infra-mysql-password:
+    file: ./infra-mysql-password
