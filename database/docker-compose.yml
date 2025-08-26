@@ -1,0 +1,14 @@
+networks:
+  infra:
+    external: true
+
+services:
+  infra-mysql:
+    image: 'mysql:9.4.0'
+    restart: unless-stopped
+    networks:
+      - infra
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: ./infra-mysql-password
+    volumes:
+      - ./data/infra-mysql:/var/lib/mysql

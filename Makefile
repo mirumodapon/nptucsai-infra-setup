@@ -4,10 +4,14 @@ NETWORKS=proxy
 
 up:
 	@$(MAKE) create_networks
-	@docker compose -f **/docker-compose.yml up -d
+	@for compose in $$(ls **/docker-compose.yml); do \
+		docker compose -f $${compose} up -d; \
+	done
 
 down:
-	@docker compose -f **/docker-compose.yml down
+	@for compose in $$(ls **/docker-compose.yml); do \
+		docker compose -f $${compose} down; \
+	done
 	@$(MAKE) remove_networks
 
 create_networks:
